@@ -16,7 +16,7 @@ type CEPService struct {
 
 func NewCEPService() *CEPService {
 	return &CEPService{
-		viaCEPURL: "https://viacep.com.br/ws/%s/json/",
+		viaCEPURL: "http://viacep.com.br/ws/%s/json",
 	}
 }
 

@@ -17,7 +17,7 @@ type WeatherService struct {
 func NewWeatherService() *WeatherService {
 	apiKey := os.Getenv("WEATHER_API_KEY")
 	if apiKey == "" {
-		apiKey = "d6ba1be8b8f94d50b21210624261801" // Default for testing, should be set via env var
+		apiKey = "058f860ab86f4a2db6113234261105" // Default for testing, should be set via env var
 	}
 
 	return &WeatherService{
