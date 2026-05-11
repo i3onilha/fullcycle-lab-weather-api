@@ -198,6 +198,30 @@ gcloud run deploy weather-api \
 
 Este comando fará o build e deploy automaticamente.
 
+## 🌐 Acesso à API online (produção)
+
+A API implantada no Cloud Run pode ser chamada diretamente pelo navegador ou por qualquer cliente HTTP.
+
+**URL do serviço:** `https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app`
+
+**Como usar**
+
+1. Substitua o placeholder pelo CEP brasileiro (8 dígitos, com ou sem hífen). O modelo da URL é:
+   `https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/weather/<numero-cep>`
+   Ou seja: troque `<numero-cep>` (equivalente a `<numero-cep>`) pelo CEP — por exemplo `01310100` ou `01310-100`, resultando em `.../weather/01310100`.
+
+2. **No navegador:** abra uma URL completa, por exemplo:
+   `https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/weather/01310100`
+
+3. **Com curl:**
+   ```bash
+   curl "https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/weather/01310100"
+   ```
+
+4. **Health check:** `https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/health`
+
+As respostas (200, 404, 422) seguem o mesmo formato descrito na seção **Endpoints** deste README.
+
 ## 📚 APIs Utilizadas
 
 - **viaCEP**: https://viacep.com.br/ - Para buscar informações do CEP
