@@ -28,12 +28,12 @@ func (h *WeatherHandler) GetWeather(w http.ResponseWriter, r *http.Request) {
 	// Get CEP from URL path using mux vars
 	vars := mux.Vars(r)
 	cep := vars["cep"]
-	
+
 	// Validate CEP format
 	if !h.cepService.ValidateCEP(cep) {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		json.NewEncoder(w).Encode(models.ErrorResponse{
-			Message: "invalid zipcode",
+			Message: "CEP inválido",
 		})
 		return
 	}
@@ -41,17 +41,17 @@ func (h *WeatherHandler) GetWeather(w http.ResponseWriter, r *http.Request) {
 	// Get location from viaCEP
 	location, err := h.cepService.GetLocationByCEP(cep)
 	if err != nil {
-		if err.Error() == "invalid zipcode" {
+		if err.Error() == "CEP inválido" {
 			w.WriteHeader(http.StatusUnprocessableEntity)
 			json.NewEncoder(w).Encode(models.ErrorResponse{
-				Message: "invalid zipcode",
+				Message: "CEP inválido",
 			})
 			return
 		}
-		if err.Error() == "can not find zipcode" {
+		if err.Error() == "CEP não encontrado" {
 			w.WriteHeader(http.StatusNotFound)
 			json.NewEncoder(w).Encode(models.ErrorResponse{
-				Message: "can not find zipcode",
+				Message: "CEP não encontrado",
 			})
 			return
 		}

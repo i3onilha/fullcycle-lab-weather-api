@@ -36,18 +36,18 @@ func (s *WeatherService) GetTemperatureByLocation(city, state string) (float64, 
 
 	resp, err := http.Get(url)
 	if err != nil {
-		return 0, fmt.Errorf("failed to fetch weather: %w", err)
+		return 0, fmt.Errorf("erro ao buscar a temperatura: %w", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(resp.Body)
-		return 0, fmt.Errorf("weather API error: %s", string(body))
+		return 0, fmt.Errorf("verique o CEP informado: %s", string(body))
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return 0, fmt.Errorf("failed to read response: %w", err)
+		return 0, fmt.Errorf("erro ao ler a resposta: %w", err)
 	}
 
 	var weatherResp struct {
@@ -57,7 +57,7 @@ func (s *WeatherService) GetTemperatureByLocation(city, state string) (float64, 
 	}
 
 	if err := json.Unmarshal(body, &weatherResp); err != nil {
-		return 0, fmt.Errorf("failed to parse weather response: %w", err)
+		return 0, fmt.Errorf("erro ao parsear a resposta: %w", err)
 	}
 
 	return weatherResp.Current.TempC, nil

@@ -37,33 +37,33 @@ func (s *CEPService) GetLocationByCEP(cep string) (*models.ViaCEPResponse, error
 	cleanCEP := re.ReplaceAllString(cep, "")
 
 	if len(cleanCEP) != 8 {
-		return nil, fmt.Errorf("invalid zipcode")
+		return nil, fmt.Errorf("CEP inválido")
 	}
 
 	url := fmt.Sprintf(s.viaCEPURL, cleanCEP)
 	resp, err := http.Get(url)
 	if err != nil {
-		return nil, fmt.Errorf("failed to fetch CEP: %w", err)
+		return nil, fmt.Errorf("erro ao buscar o CEP: %w", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode == http.StatusBadRequest {
-		return nil, fmt.Errorf("invalid zipcode")
+		return nil, fmt.Errorf("CEP inválido")
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, fmt.Errorf("failed to read response: %w", err)
+		return nil, fmt.Errorf("erro ao ler a resposta: %w", err)
 	}
 
 	var cepResponse models.ViaCEPResponse
 	if err := json.Unmarshal(body, &cepResponse); err != nil {
-		return nil, fmt.Errorf("failed to parse response: %w", err)
+		return nil, fmt.Errorf("erro ao parsear a resposta: %w", err)
 	}
 
 	// Check if CEP was not found
 	if cepResponse.Erro || cepResponse.Localidade == "" {
-		return nil, fmt.Errorf("can not find zipcode")
+		return nil, fmt.Errorf("CEP não encontrado")
 	}
 
 	return &cepResponse, nil

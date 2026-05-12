@@ -53,7 +53,7 @@ Retorna as temperaturas em Celsius, Fahrenheit e Kelvin para o CEP informado.
 
 **Exemplo de requisição:**
 ```bash
-curl http://localhost:8080/weather/01310100
+curl http://localhost:8080/weather/69030000
 ```
 
 **Respostas:**
@@ -208,14 +208,14 @@ A API implantada no Cloud Run pode ser chamada diretamente pelo navegador ou por
 
 1. Substitua o placeholder pelo CEP brasileiro (8 dígitos, com ou sem hífen). O modelo da URL é:
    `https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/weather/<numero-cep>`
-   Ou seja: troque `<numero-cep>` (equivalente a `<numero-cep>`) pelo CEP — por exemplo `01310100` ou `01310-100`, resultando em `.../weather/01310100`.
+   Ou seja: troque `<numero-cep>` (equivalente a `<numero-cep>`) pelo CEP — por exemplo `69030000` ou `01310-100`, resultando em `.../weather/69030000`.
 
 2. **No navegador:** abra uma URL completa, por exemplo:
-   `https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/weather/01310100`
+   `https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/weather/69030000`
 
 3. **Com curl:**
    ```bash
-   curl "https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/weather/01310100"
+   curl "https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/weather/69030000"
    ```
 
 4. **Health check:** `https://fullcycle-lab-weather-api-5jba6xbycq-uc.a.run.app/health`
@@ -234,7 +234,7 @@ As respostas (200, 404, 422) seguem o mesmo formato descrito na seção **Endpoi
 
 ## 📝 Notas
 
-- O CEP pode ser informado com ou sem formatação (ex: `01310100` ou `01310-100`)
+- O CEP pode ser informado com ou sem formatação (ex: `69030000` ou `01310-100`)
 - A WeatherAPI oferece um plano gratuito com 1 milhão de requisições por mês
 - O Cloud Run Free Tier permite até 2 milhões de requisições por mês
 

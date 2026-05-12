@@ -10,7 +10,7 @@ func TestCEPService_ValidateCEP(t *testing.T) {
 	}{
 		{
 			name: "valid CEP with 8 digits",
-			cep:  "01310100",
+			cep:  "69030000",
 			want: true,
 		},
 		{
@@ -25,7 +25,7 @@ func TestCEPService_ValidateCEP(t *testing.T) {
 		},
 		{
 			name: "invalid CEP with more than 8 digits",
-			cep:  "013101001",
+			cep:  "690300001",
 			want: false,
 		},
 		{
